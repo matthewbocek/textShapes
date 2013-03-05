@@ -1,0 +1,78 @@
+<!doctype html>
+
+<head>
+	<script type="text/javascript">
+		function Animal(name,species,sound) {
+			this.name = name;
+			this.species = species;
+			this.sound = sound;
+			console.log(this.species + " " + this.name + " initialized");
+		}
+		
+		Animal.prototype.speak = function() {
+				console.log(this.name + " the " + this.species + " is " + this.sound + " pounds.");
+		};
+			
+		
+		Animal.prototype.eat = function() {
+			var minWeight = 100000;
+			var smallest = 0;
+			
+			for(var i=0;i<animals.length;i++) {
+				if (animals[i].sound < minWeight) {
+					minWeight = animals[i].sound;
+					smallest = i;
+				}
+			}
+			
+			//if (animals[smallest].name != this.name) {
+				console.log(animals[smallest].name + " was eaten by the larger animals.");
+				animals.splice(smallest,1);
+			//} else {
+			//	console.log(animals[smallest].name + " has nothing to eat");
+			//}
+		};
+			
+		var animals = Array();
+		animals[animals.length] = new Animal('Bessie','cow','1000');
+		animals[animals.length] = new Animal('Rover','dog','200');
+				
+		animals[1].speak();
+		
+		
+		
+		function newAnimal() {
+			var name = document.getElementById("name").value;
+			var species = document.getElementById("species").value;
+			var sound = document.getElementById("sound").value;
+		
+			animals[animals.length] = new Animal(name,species,sound);
+		}
+		
+		function allSpeak() {
+			
+			for(var i=0;i<animals.length;i++) {
+				animals[i].speak();
+			}
+			
+			/*
+			for(a in animals) {
+				a.speak();
+			}*/		
+		}
+		
+		function nom() {
+			animals[0].eat();
+		}
+		
+	</script>
+</head>
+
+<body>
+	<input type="text" id="name" name="name" value="Jeremiah" />
+	<input type="text" id="species" name="species" value="bullfrog" />
+	<input type="text" id="sound" name="sound" value="1" />
+	<input  type="button" name="go" id="go" value="Make animal" onclick="newAnimal()" />
+	<input  type="button" name="all" id="all" value="All Speak" onclick="allSpeak()" />
+	<input  type="button" name="nom" id="nom" value="om nom" onclick="nom()" />
+</body>
